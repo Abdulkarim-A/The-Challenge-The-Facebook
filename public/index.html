@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Faceebook</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Welcome to Faceebook</h1>
+    <p>Your social network for the future.</p>
+
+    <form action="/create" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <button type="submit">Post</button>
+    </form>
+
+    <ul>
+        <% posts.forEach(post => { %>
+            <li>
+                <strong><%= post.name %></strong>: <%= post.message %>
+                <p><%= post.date.toDateString() %></p>
+                <a href="/edit/<%= post._id %>">Edit</a>
+                <a href="/delete/<%= post._id %>" onclick="return confirm('Are you sure?')">Delete</a>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>
